@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import ProductList from './pages/ProductList';  // Updated path
+import ProductList from './pages/ProductList';
+
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <header className="App-header">
         <ProductList />
       </header>
+
     </div>
   );
 }

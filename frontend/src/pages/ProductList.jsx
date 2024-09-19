@@ -1,27 +1,35 @@
 import React from "react";
+import Header from "../components/Header.jsx";
 
-// Sample product data
-const products = [
-    { id: 1, name: "Product A", price: "$30", description: "This is Product A" },
-    { id: 2, name: "Product B", price: "$50", description: "This is Product B" },
-    { id: 3, name: "Product C", price: "$70", description: "This is Product C" },
-];
 
-const ProductList = () => {
+
+function ProductList() {
     return (
         <div>
-            <h1>Product Listing</h1>
-            <ul>
-                {products.map((product) => (
-                    <li key={product.id}>
-                        <h2>{product.name}</h2>
-                        <p>{product.description}</p>
-                        <p>{product.price}</p>
-                    </li>
-                ))}
-            </ul>
+            {/* Add the Header component */}
+            <Header />
+
+            {/* Main content for product listing */}
+            <div className="product-list">
+                <div className="side-nav">
+                    <nav>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/products">Shop</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/contact">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <h2>Our Products</h2>
+                <ul>
+                    <li>Product 1</li>
+                    <li>Product 2</li>
+                    <li>Product 3</li>
+                </ul>
+            </div>
         </div>
     );
-};
+}
 
 export default ProductList;
