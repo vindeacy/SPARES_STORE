@@ -21,9 +21,20 @@ body {
   box-sizing: border-box;
 }
 
+.logo-container {
+  display: inline-block; /* Keeps the logo in line with the navigation items */
+  margin-right: 20px; /* Space between logo and nav items */
+}
+
+.logo {
+  height: 100px; /* Adjust the height as needed */
+  vertical-align: middle; /* Aligns logo vertically with nav items */
+}
+
 .header nav {
   display: flex;
   justify-content: center;
+  margin-right: 100px;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -43,7 +54,7 @@ body {
 .header nav ul li a {
   text-decoration: none;
   color: #000000;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .product-list {
@@ -54,6 +65,7 @@ body {
 }
 
 .icon {
-  color: red;
-  font-size: 30px;
+  color: black;
+  font-size: 24px;
+  vertical-align: middle;
 }

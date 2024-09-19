@@ -1,6 +1,8 @@
-// src/components/SearchBox.jsx
-import React, { useState } from 'react';
-import { IoSearchOutline } from "react-icons/io5";
+import React, { useState } from "react";
+import { CiSearch } from "react-icons/ci";
+import './SearchBox.css'; // Ensure you have this CSS file or adjust path accordingly
+import '../styles.css';
+
 
 function SearchBox({ onSearch }) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -16,9 +18,12 @@ function SearchBox({ onSearch }) {
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Whar are you looking for?"
+                placeholder="What are you looking for?"
+                className="search-input"
             />
-            <button type="submit"><IoSearchOutline /></button>
+            <button type="submit" className="search-button">
+                <CiSearch className="icon" />
+            </button>
         </form>
     );
 }
