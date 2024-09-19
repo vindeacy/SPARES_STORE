@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { actions } from '../features/auth/authslice.js';
+// import { actions } from '../features/auth/authslice.js'; // Ensure this includes a register action
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import Frame from '../images/Frame.svg';
-import IconGoogle from '../images/IconGoogle.svg'
+import IconGoogle from '../images/IconGoogle.svg';
 
 const RegistrationPage = () => {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,9 +15,9 @@ const RegistrationPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Dispatch registration action (you'll need to implement this in your slice)
-    dispatch(actions.register({ name, email, password }));
+    
+    // Dispatch registration action
+    dispatch(actions.register({ name: `${firstName} ${lastName}`, email, password }));
   };
 
   return (
@@ -33,40 +34,64 @@ const RegistrationPage = () => {
         <Col md={6} className="d-flex justify-content-center align-items-center">
           <Card className="p-4 w-100">
             <Card.Title className="text-center">Register</Card.Title>
-            <Form >
+            <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicFirstName">
                 <Form.Label>First Name</Form.Label>
-                <Form.Control type="text" placeholder="First name" />
+                <Form.Control 
+                  type="text" 
+                  placeholder="First name" 
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                />
               </Form.Group>
 
               <Form.Group controlId="formBasicLastName">
                 <Form.Label>Last Name</Form.Label>
-                <Form.Control type="text" placeholder="Last name" />
+                <Form.Control 
+                  type="text" 
+                  placeholder="Last name" 
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                />
               </Form.Group>
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Email" />
+                <Form.Control 
+                  type="email" 
+                  placeholder="Email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control 
+                  type="password" 
+                  placeholder="Password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
               </Form.Group>
 
-              <Button type="submit" className="mt-3 w-100"
-                style={{ backgroundColor: '#88293b' }} >
+              {/* Google Sign-Up Button */}
+              <Button type="button" className="mt-3 w-100" style={{ backgroundColor: '#88293b' }}>
                 <img
                   src={IconGoogle}
                   alt="IconGoogle"
                   className="img-fluid"
-                  style={{ transition: 'all 0.3s ease', maxWidth: '80%', height: 'auto', marginRight: '8px' }}
+                  style={{ transition: 'all 0.3s ease', maxWidth: '20px', height: 'auto', marginRight: '8px' }}
                 />
                 Sign Up With Google
               </Button>
 
-              <Button type="submit" className="mt-3 w-100"
-                style={{ backgroundColor: '#88293b' }} >
+              {/* Create Account Button */}
+              <Button type="submit" className="mt-3 w-100" style={{ backgroundColor: '#88293b' }}>
                 Create Account
               </Button>
             </Form>
