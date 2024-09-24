@@ -9,7 +9,7 @@ import { LuShoppingBag } from "react-icons/lu";
 import { MdOutlineCancel } from "react-icons/md";
 import { MdOutlineStarBorderPurple500 } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
-
+import { FaSearch } from "react-icons/fa";
  
 
 const Header = () => {
