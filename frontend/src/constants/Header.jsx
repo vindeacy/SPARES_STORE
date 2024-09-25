@@ -14,7 +14,7 @@ import { FaSearch } from "react-icons/fa";
 
 const Header = () => {
   return (
-    <Navbar bg="light" expand="lg" className="header-navbar">
+    <Navbar bg="light" expand="lg" className="header-navbar" style={{backgroundColor: '#000000'}}>
  <Navbar bg="light" expand="lg">
             <Navbar.Brand href="#">
                 <img
@@ -28,7 +28,7 @@ const Header = () => {
         </Navbar>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="ms-auto">
           <Nav.Link href="#home">Home</Nav.Link>
           <DropdownButton id="dropdown-basic-button" title="Shop">
             <Dropdown.Item href="#action/3.1">Category 1</Dropdown.Item>
