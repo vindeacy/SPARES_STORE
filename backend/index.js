@@ -16,6 +16,11 @@ app.use(express.json());
 // Connect to the database
 connectDB();
 
+// Root route
+app.get('/', (req, res) => {
+    res.send('Welcome to the API');
+});
+
 // Use routes
 app.use('/api/users', userRoutes);
 
@@ -26,7 +31,6 @@ app.use('/api/products', productRoutes);
 app.get('/profile', authMiddleware, (req, res) => {
     res.json({ message: `Welcome, ${req.user.userId}!` });
 });
-
 
 // Start the server
 app.listen(PORT, () => {
