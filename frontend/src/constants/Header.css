@@ -1,0 +1,23 @@
+.header-navbar {
+    padding: 10px 20px;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar .search-button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .icons-bar .nav-link {
+    margin: 0 10px;
+  }
+  
+  #profile-dropdown {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
