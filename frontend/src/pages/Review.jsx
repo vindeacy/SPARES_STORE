@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ProductDetails from './ProductDetails';
+
 
 const Reviews = () => {
  
@@ -48,7 +48,7 @@ const Reviews = () => {
 
   return (
 
-    <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0 auto' }}>
+    <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0', padding: '0'}}>
       <h2>Customer Reviews</h2>
 
       {reviews.map((review) => (

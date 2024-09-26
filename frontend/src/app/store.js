@@ -1,10 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../features/auth/authslice';
+import { createStore } from 'redux';
 
-const store = configureStore({
-  reducer: {
-    auth: authReducer,
-  },
-});
+
+const initialState = {
+    user: null,
+};
+
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case 'SET_USER':
+            return { ...state, user: action.payload };
+        default:
+            return state;
+    }
+};
+
+const store = createStore(reducer);
 
 export default store;

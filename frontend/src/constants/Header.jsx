@@ -14,6 +14,8 @@ import { FaSearch } from "react-icons/fa";
 
 const Header = () => {
   return (
+    <>
+    <div style={{backgroungColor: '#3B3B3D'}}>
     <Navbar bg="light" expand="lg" className="header-navbar" style={{backgroundColor: '#000000'}}>
  <Navbar bg="light" expand="lg">
             <Navbar.Brand href="#">
@@ -30,11 +32,7 @@ const Header = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">
           <Nav.Link href="#home">Home</Nav.Link>
-          <DropdownButton id="dropdown-basic-button" title="Shop">
-            <Dropdown.Item href="#action/3.1">Category 1</Dropdown.Item>
-            <Dropdown.Item href="#action/3.2">Category 2</Dropdown.Item>
-            <Dropdown.Item href="#action/3.3">Category 3</Dropdown.Item>
-          </DropdownButton>
+          <Nav.Link href="#shop">Shop</Nav.Link>      
           <Nav.Link href="#about">About</Nav.Link>
           <Nav.Link href="#contact">Contact Us</Nav.Link>
         </Nav>
@@ -45,7 +43,7 @@ const Header = () => {
           </button>
         </Form>
         <Nav className="icons-bar">
-          <Nav.Link href="#wishlist"><FaHeart /></Nav.Link>
+          <Nav.Link href="#wishlist"><FaHeart style={{ color: '#FF0000'}} /></Nav.Link>
           <Nav.Link href="#cart"><FaShoppingCart /></Nav.Link>
           <Dropdown alignRight>
             <Dropdown.Toggle as={FaUser} id="profile-dropdown">
@@ -61,6 +59,8 @@ const Header = () => {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
+    </div>
+    </>
   );
 }
 

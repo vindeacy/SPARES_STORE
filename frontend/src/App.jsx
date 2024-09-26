@@ -1,20 +1,18 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import ProductDetails from "./pages/ProductDetails.jsx"; // Corrected import
-import Footer from "./constants/Footer.jsx";
-import Header from "./constants/Header.jsx";
-import Review from "./pages/Review.jsx";
+import './App.css';
+import { Outlet } from 'react-router-dom';
+import { ToastContainer } from "react-toastify";
+import Header from './constants/Header';
+import Footer from './constants/Footer';
 
-const App = () => {
+function App() {
   return (
-    <div>
+    <>     
       <Header />
-      <ProductDetails />
-      <Review />
+      <Outlet />
       <Footer />
-      
-    </div>
+      <ToastContainer />
+    </>
   );
-};
+}
 
 export default App;

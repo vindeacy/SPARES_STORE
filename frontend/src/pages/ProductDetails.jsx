@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import light from '../images/light.svg';
 import filter from '../images/filter.svg';
+import { Link } from 'react-router-dom';
 import { Row, Col, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaTrophy } from "react-icons/fa";
 import { BiCheckShield } from "react-icons/bi";
-import { BiSolidShoppingBags } from "react-icons/bi";
-import { PiHeadset } from "react-icons/pi";
-
+import { BiShoppingBag } from "react-icons/bi";
+import { IoHeadset } from "react-icons/io5";
 
 const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
+    const [activeTab, setActiveTab] = useState('Description');
 
     const increaseQuantity = () => {
         setQuantity(prevQuantity => prevQuantity + 1);
@@ -19,6 +20,7 @@ const ProductDetails = () => {
     const decreaseQuantity = () => {
         if (quantity > 1) setQuantity(prevQuantity => prevQuantity - 1);
     };
+
     const relatedProducts = [
         { image: 'filter.svg', name: 'filter', price: 4000 },
         { image: 'plug.svg', name: 'plug', price: 3500 },
@@ -26,30 +28,32 @@ const ProductDetails = () => {
         { image: 'plug.svg', name: 'plug', price: 3500 },
     ];
 
-    const handleMouseOver = (e) => {
-        e.target.style.backgroundColor = "#e0e0e0";
-    };
-    
-    const handleMouseOut = (e) => {
-        e.target.style.backgroundColor = "#f0f0f0";
-    };
     const features = [
         { icon: <FaTrophy size={30} />, title: 'High Quality', description: 'crafted from top materials' },
         { icon: <BiCheckShield size={30} />, title: 'Warranty Protection', description: 'Over 2 years' },
-        { icon: <BiSolidShoppingBags size={30} />, title: 'Free Shipping', description: 'Order over 150 $' },
-        { icon: <PiHeadset size={30} />, title: '24/7 Support', description: 'Dedicated support' }
-      ];
+        { icon: <BiShoppingBag size={30} />, title: 'Free Shipping', description: 'Order over 150 $' },
+        { icon: <IoHeadset size={30} />, title: '24/7 Support', description: 'Dedicated support' }
+    ];
 
-      
+    const handleMouseOver = (e) => {
+        e.target.style.backgroundColor = "#e0e0e0";
+    };
 
+    const handleMouseOut = (e) => {
+        e.target.style.backgroundColor = "#f0f0f0";
+    };
+
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+    };
 
     return (
         <Container style={{ fontFamily: "Arial, sans-serif", padding: "20px" }}>
-           <div style={{ marginBottom: "20px" }}>
-            <a href="/" style={{ color: "#555", textDecoration: "none" }}>Home</a> &gt; 
-            <a href="/shop" style={{ color: "#555", textDecoration: "none" }}>Shop</a> &gt; 
-            <a href="/shop/toyota-headlights" style={{ color: "#555", textDecoration: "none" }}>Toyota Headlights</a>
-        </div>
+            <div style={{ marginBottom: "20px" }}>
+                <a href="/" style={{ color: "#555", textDecoration: "none" }}>Home</a> &gt; 
+                <a href="/shop" style={{ color: "#555", textDecoration: "none" }}>Shop</a> &gt; 
+                <a href="/shop/toyota-headlights" style={{ color: "#555", textDecoration: "none" }}>Toyota Headlights</a>
+            </div>
 
             <div style={{ display: "flex", gap: "30px" }}>
                 <Row>
@@ -69,7 +73,7 @@ const ProductDetails = () => {
                             <span style={{ marginLeft: "10px", fontSize: "14px", color: "#666" }}>5.0 (12 Reviews)</span>
                         </div>
                         <p style={{ fontSize: "20px", color: "#333", marginBottom: "10px" }}>Ksh 5000</p>
-                        <p style={{ fontSize: "14px", color: "#555", lineHeight: "1.5" }}>
+                        <p style={{ fontSize: "14 px", color: "#555", lineHeight: "1.5" }}>
                             Enhance your driving visibility with our premium Car Headlight. Designed for optimal performance and safety...
                         </p>
 
@@ -92,52 +96,66 @@ const ProductDetails = () => {
 
             <div style={{ marginTop: "30px", borderTop: "1px solid #ddd", paddingTop: "20px" }}>
             <div style={{ display: "flex", gap: "30px", marginBottom: "10px" }}>
-            {["Description", "Additional Information", "Reviews"].map((tab, index) => (
-                <button 
-                    key={index} 
-                    style={tabButtonStyle} 
-                    onMouseOver={handleMouseOver} 
-                    onMouseOut={handleMouseOut}
-                >
-                    {tab}
-                </button>
-            ))}
-        </div>
-                <div style={{ fontSize: "14px", color: "#555", lineHeight: "1.5" }}>
-                Enhance your driving visibility with our premium Car Headlight, designed for optimal performance and safety. This high-quality headlight offers bright, clear illumination, ensuring excellent road visibility even in low-light or harsh weather conditions. Built with durable materials, it features a long-lasting lifespan, energy efficiency, and easy installation. Compatible with a wide range of vehicle makes and models, it meets all safety and OEM standards.
+    {["Description", "Additional Information", "Reviews"].map((tab, index) => (
+        <Link 
+            key={index} 
+            to={`/${tab.toLowerCase().replace(' ', '-')}`} 
+            style={tabButtonStyle} 
+            onMouseOver={handleMouseOver} 
+            onMouseOut={handleMouseOut}
+        >
+            {tab}
+        </Link>
+    ))}
+</div>
+                {activeTab === 'Description' && (
+                    <div style={{ fontSize: "14px", color: "#555", lineHeight: "1.5" }}>
+                        Enhance your driving visibility with our premium Car Headlight, designed for optimal performance and safety. This high-quality headlight offers bright, clear illumination, ensuring excellent road visibility even in low-light or harsh weather conditions. Built with durable materials, it features a long-lasting lifespan, energy efficiency, and easy installation. Compatible with a wide range of vehicle makes and models, it meets all safety and OEM standards.
 
-                Whether you're upgrading or replacing your headlight, this is the perfect solution for clear, reliable lighting on every journey.
-                </div>
+                        Whether you're upgrading or replacing your headlight, this is the perfect solution for clear, reliable lighting on every journey.
+                    </div>
+                )}
+                {activeTab === 'Additional Information' && (
+                    <div style={{ fontSize: "14px", color: "#555", lineHeight: "1.5" }}>
+                        Additional information about the product...
+                    </div>
+                )}
+                {activeTab === 'Reviews' && (
+                    <div style={{ fontSize: "14px", color: "#555", lineHeight: "1.5" }}>
+                        Reviews about the product...
+                    </div>
+                )}
             </div>
 
             <div style={{ marginTop: "40px" }}>
-            <h3 style={{ marginBottom: "20px", color: "#333" }}><b>Related Products</b></h3>
-            <div style={{ display: "flex", justifyContent: "space-between", gap: "20px" }}>
-                {relatedProducts.map((product, index) => (
-                    <div key={index} style={{ flex: "1", maxWidth: "calc(25% - 20px)", textAlign: "center" }}>
-                        <img 
-                            src={filter} 
-                            alt={filter.image || ""} 
-                            style={{ width: "150px", height: "150px" }} 
-                        />
-                        <p style={{ margin: "10px 0", fontSize: "14px", color: "#333" }}>{product.name}</p>
-                        <p style={{ fontSize: "16px", fontWeight: "bold", color: "#333" }}>Ksh{product.price}</p>
+                <h3 style={{ marginBottom: "20px", color: "#333" }}><b>Related Products</b></h3>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: "20px" }}>
+                    {relatedProducts.map((product, index) => (
+                        <div key={index} style={{ flex: "1", maxWidth: "calc(25% - 20px)", textAlign: "center" }}>
+                            <img 
+                                src={filter} 
+                                alt={filter.image || ""} 
+                                style={{ width: "150px", height: "150px" }} 
+                            />
+                            <p style={{ margin: "10px 0", fontSize: "14px", color: "#333" }}>{product.name}</p>
+                            <p style={{ fontSize: "16px", fontWeight: "bold", color: "#333" }}>Ksh{product.price}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div style={containerStyle}>
+                {features.map((feature, index) => (
+                    <div key={index} style={featureStyle}>
+                        {feature.icon}
+                        <p style={titleStyle}>{feature.title}</p>
+                        <p style={descriptionStyle}>{feature.description}</p>
                     </div>
                 ))}
             </div>
-        </div>
-        <div style={containerStyle}>
-            {features.map((feature, index) => (
-                <div key={index} style={featureStyle}>
-                {feature.icon}
-                <p style={titleStyle}>{feature.title}</p>
-                <p style={descriptionStyle}>{feature.description}</p>
-        </div>
-      ))}
-    </div>
         </Container>
     );
 };
+
 const quantityButtonStyle = {
     backgroundColor: "#ddd",
     border: "1px solid #ccc",
@@ -164,17 +182,27 @@ const tabButtonStyle = {
     fontSize: "14px"
 };
 
-const relatedProducts = [
-    { image: "/path/to/air-filter.jpg", name: "Toyota Air Filter", price: "$235.00" },
-    { image: "/path/to/air-filter2.jpg", name: "Toyota Air Filter II", price: "$235.00" },
-    { image: "/path/to/air-filter3.jpg", name: "Toyota Air Filter III", price: "$235.00" }
-];
+const containerStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "20px"
+};
 
-const footerIcons = [
-    { image: src={FaTrophy}, title: "High Quality" },
-    { image: src={BiCheckShield}, title: "Warranty Protection" },
-    { image: src={BiSolidShoppingBags}, title: "Free Shipping" },
-    { image: src={FaTrophy}, title: "24/7 Support" }
-];
+const featureStyle = {
+    flex: "1",
+    maxWidth: "calc(25% - 20px)",
+    textAlign: "center"
+};
+
+const titleStyle = {
+    fontSize: "16px",
+    fontWeight: "bold",
+    color: "#333"
+};
+
+const descriptionStyle = {
+    fontSize: "14px",
+    color: "#555"
+};
 
 export default ProductDetails;

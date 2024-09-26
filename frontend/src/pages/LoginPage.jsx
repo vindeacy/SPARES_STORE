@@ -11,15 +11,14 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize navigate
-
+  const navigate = useNavigate(); 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(loginAsync({ email, password })).unwrap(); // Dispatch login action
-      navigate('/dashboard'); // Redirect on successful login
+      await dispatch(loginAsync({ email, password })).unwrap(); 
+      navigate('/dashboard'); 
     } catch (error) {
-      console.error("Login failed:", error); // Handle login error
+      console.error("Login failed:", error); 
     }
   };
 
